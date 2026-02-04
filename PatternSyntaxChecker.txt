@@ -1,0 +1,21 @@
+import java.util.Scanner;
+import java.util.regex.*;
+public class Solution
+{
+	public static void main(String[] args){
+		Scanner in = new Scanner(System.in);
+		int txtcase = Integer.parseInt(in.nextLine());
+		while(txtcase>0){
+			String pat = in.nextLine();
+          	txtcase--;
+            try {
+                Pattern.compile(pat);
+                System.out.println("Valid");
+            } catch (PatternSyntaxException e) {
+                System.out.println("Invalid"); 
+            }
+        }
+        in.close();
+	}
+}
+

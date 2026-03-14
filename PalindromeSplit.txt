@@ -1,0 +1,28 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+
+class TestClass {
+    public static void main(String args[]) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int testCases = Integer.parseInt(br.readLine()); 
+        while (testCases-- > 0) {
+            String input = br.readLine();
+            int maxPalindromicSubsequences = countPalindromicSubsequences(input);
+            System.out.println(maxPalindromicSubsequences);
+        }
+    }
+    private static int countPalindromicSubsequences(String s) {
+        HashMap<Character, Integer> charCount = new HashMap<>();
+        for (char c : s.toCharArray()) {
+            charCount.put(c, charCount.getOrDefault(c, 0) + 1);
+        }    
+        int palindromicSubsequences = 0;
+        for (int count : charCount.values()) {
+            if (count >= 2) {
+                palindromicSubsequences += count / 2; 
+            }
+        }
+        return palindromicSubsequences;
+    }
+}

@@ -1,0 +1,38 @@
+import java.util.*;
+import java.io.*;
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim());
+        while (t-- > 0) {
+            int n = Integer.parseInt(br.readLine().trim()); 
+            String[] lineA = br.readLine().trim().split("\\s+");
+            String[] lineB = br.readLine().trim().split("\\s+");  
+            int[] a = new int[n];
+            int[] b = new int[n];
+            for(int i = 0; i < n; i++) {
+                a[i] = Integer.parseInt(lineA[i]);
+                b[i] = Integer.parseInt(lineB[i]);
+            }
+            int left = -1;
+            int right = -1;
+            for (int i = 0; i < n; i++) {
+                if (a[i] != b[i]) {
+                    left = i;
+                    break;
+                }
+            }
+            if (left == -1) {
+                System.out.println(0);
+                continue;
+            }
+            for (int i = n - 1; i >= 0; i--) {
+                if (a[i] != b[i]) {
+                    right = i;
+                    break;
+                }
+            }
+            System.out.println(right - left + 1);
+        }
+    }
+}

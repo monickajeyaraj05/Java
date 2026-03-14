@@ -1,0 +1,47 @@
+import java.util.*;
+import java.io.*;
+
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim());
+
+        while (t-- > 0) {
+            int n = Integer.parseInt(br.readLine().trim());
+            int[] a = new int[n];
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int i = 0; i < n; i++) {
+                a[i] = Integer.parseInt(st.nextToken());
+            }
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < n; i++) {
+                if (i == 0 || i == n - 1) {
+                    sb.append("-1 ");
+                    continue;
+                }
+                int L = -1;
+                for (int j = i - 1; j >= 0; j--) {
+                    if (a[j] < a[i]) {
+                        L = j;
+                        break;
+                    }
+                }
+                int R = -1;
+                for (int j = i + 1; j < n; j++) {
+                    if (a[j] < a[i]) {
+                        R = j;
+                        break;
+                    }
+                }
+
+                if (L != -1 && R != -1) {
+                    int ops = (i - L - 1) + (R - i - 1);
+                    sb.append(ops).append(" ");
+                } else {
+                    sb.append("-1 ");
+                }
+            }
+            System.out.println(sb.toString().trim());
+        }
+    }
+}

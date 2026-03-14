@@ -1,0 +1,35 @@
+import java.util.*;
+import java.io.*;
+class TestClass {
+    public static void main(String args[]) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        
+        if (!sc.hasNextInt()) return;
+        int t = sc.nextInt();
+        
+        while (t-- > 0) {
+            int n = sc.nextInt();
+            List<Integer> evenParity = new ArrayList<>();
+            List<Integer> oddParity = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                int num = sc.nextInt();
+                if (Integer.bitCount(num) % 2 == 0) {
+                    evenParity.add(num);
+                } else {
+                    oddParity.add(num);
+                }
+            }
+            Collections.sort(evenParity);
+            Collections.sort(oddParity);
+            StringBuilder sb = new StringBuilder();
+            for (int num : evenParity) {
+                sb.append(num).append(" ");
+            }
+            for (int num : oddParity) {
+                sb.append(num).append(" ");
+            }
+            
+            System.out.println(sb.toString().trim());
+        }
+    }
+}

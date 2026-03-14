@@ -1,0 +1,43 @@
+import java.util.*;
+import java.io.*;
+
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String line = br.readLine();
+        if (line == null) return;
+        int t = Integer.parseInt(line.trim());
+        while (t-- > 0) {
+            int n = Integer.parseInt(br.readLine().trim());
+            int[] a = new int[n];
+            long totalSum = 0;
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int i = 0; i < n; i++) {
+                a[i] = Integer.parseInt(st.nextToken());
+                totalSum += a[i];
+            }
+            BitSet possibleSums = new BitSet((int)totalSum + 1);
+            possibleSums.set(0);
+            for (int x : a) {
+                for (int i = (int)totalSum; i >= x; i--) {
+                    if (possibleSums.get(i - x)) {
+                        possibleSums.set(i);
+                    }
+                }
+            }
+            long minDiff = Long.MAX_VALUE;
+            long S_sq = totalSum * totalSum;
+            for (int s = 0; s <= totalSum; s++) {
+                if (possibleSums.get(s)) {
+                    long sumA = s;
+                    long sumB = totalSum - s;
+                    long diff = Math.abs((sumA * sumA) - (sumB * sumB));
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                    }
+                }
+            }
+            System.out.println(minDiff);
+        }
+    }
+}

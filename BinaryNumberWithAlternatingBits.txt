@@ -1,0 +1,21 @@
+class Solution {
+    public boolean hasAlternatingBits(int n) {
+        int pre = n & 1; 
+        n >>= 1; 
+        while (n > 0) {
+            int cur = n & 1;
+            if (cur == pre) {
+                return false; 
+            }
+            pre = cur;
+            n >>= 1; 
+        }
+        return true; 
+    }
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.hasAlternatingBits(5));  
+        System.out.println(solution.hasAlternatingBits(7));   
+        System.out.println(solution.hasAlternatingBits(11)); 
+    }
+}
